@@ -19,7 +19,7 @@ public class Main {
                             "\n" + symbol_number +
                             "1 в Гомеле");
 
-        //Вывод и занесение данных в анкету номер 1
+        //Вывод и занесение данных в анкетуномер 1
         Anketa person1 = new Anketa();
         person1.setFio("Левшунов Егор Юрьевич");
         person1.setAge((byte)23);
