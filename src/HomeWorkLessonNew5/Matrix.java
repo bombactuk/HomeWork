@@ -11,11 +11,11 @@ public class Matrix {
     private final int size;
 
     public void outputOfAllTasks() {
-        String[][] cats = new String[size][size];
-        dataInputAndOutput(cats);
-        comparisonDiagonals(cats);
-        displayingTextElementsRange(creatingArrayDiagonalElements(cats));
-        displayNumberElementsRounded(creatingArrayDiagonalElements(cats));
+        String[][] matrix = new String[size][size];
+        dataInputAndOutput(matrix);
+        comparisonDiagonals(matrix);
+        displayingTextElementsRange(creatingArrayDiagonalElements(matrix));
+        displayNumberElementsRounded(creatingArrayDiagonalElements(matrix));
     }
 
     public String randomNumber() {
@@ -40,29 +40,29 @@ public class Matrix {
         return text.toString();
     }
 
-    public void dataInputAndOutput(String[][] cats) {
+    public void dataInputAndOutput(String[][] matrix) {
         int counter = 0;
-        for (int i = 0; i < cats.length; i++) {
-            for (int j = 0; j < cats.length; j++) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
                 counter++;
                 if ((counter == 3)) {
-                    cats[i][j] = randomNumber();
+                    matrix[i][j] = randomNumber();
                     counter = 0;
                 } else {
-                    cats[i][j] = randomSymbols();
+                    matrix[i][j] = randomSymbols();
                 }
-                System.out.print(" " + cats[i][j] + " ");
+                System.out.print(" " + matrix[i][j] + " ");
             }
             System.out.println();
         }
     }
 
 
-    public String[] creatingArrayDiagonalElements(String[][] cats) {
-        String[] diagonalElements = new String[cats.length + cats.length];
-        for (int i = 0; i < cats.length; i++) {
-            diagonalElements[i] = cats[i][i];
-            diagonalElements[i + cats.length] = cats[i][cats.length - 1 - i];
+    public String[] creatingArrayDiagonalElements(String[][] matrix) {
+        String[] diagonalElements = new String[matrix.length + matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            diagonalElements[i] = matrix[i][i];
+            diagonalElements[i + matrix.length] = matrix[i][matrix.length - 1 - i];
         }
         return diagonalElements;
     }
@@ -96,9 +96,9 @@ public class Matrix {
         System.out.println(Constants.ROUNDED_NUMBERS + text);
     }
 
-    public void displayingTextElementsRange(String[] array) {
+    public void displayingTextElementsRange(String[] diagonalElements) {
         StringBuilder text = new StringBuilder();
-        for (String n : array) {
+        for (String n : diagonalElements) {
             if (n.matches("^[a-zA-Z]*$")) {
                 text.append(n, 2, 4).append(",");
             }
@@ -108,10 +108,10 @@ public class Matrix {
     }
 
 
-    public void comparisonDiagonals(String[][] cats) {
+    public void comparisonDiagonals(String[][] matrix) {
         boolean result = true;
-        for (int i = 0; i < cats.length; i++) {
-            if (!Objects.equals(cats[i][i], cats[i][cats.length - 1 - i])) {
+        for (int i = 0; i < matrix.length; i++) {
+            if (!Objects.equals(matrix[i][i], matrix[i][matrix.length - 1 - i])) {
                 result = false;
                 break;
             }
