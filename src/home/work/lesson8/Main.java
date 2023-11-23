@@ -1,35 +1,36 @@
 package home.work.lesson8;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
-        MyList<String> strings1 = new MyArrayList<>();
-        strings1.add("Егор", 0);
-        strings1.add("Женя", 1);
-        strings1.add("Влад", 2);
-        strings1.add("Юля", 3);
-        strings1.add("Катя", 4);
-        strings1.add("Андрей", 5);
-        strings1.add("Владос", 6);
-        strings1.add("Захар", 7);
-        strings1.add("Шурик", 8);
-        strings1.add("Олег", 9);
-        strings1.add("Кирилл", 10);
-        strings1.add("Рамиль", 11);
-        strings1.add("Радион", 15);
-        strings1.addAll(Arrays.asList("Светлана", "Таня"));
-        strings1.remove("Радион");
-        strings1.remove(0);
-        System.out.println(strings1.isEmpty());
-        System.out.println(strings1.contains("Захар"));
-        System.out.println(strings1.indexOf("Рамиль"));
-        strings1.set(15, "hello");
-        strings1.vivod();
-        System.out.println(strings1.get(0));
-        System.out.println(strings1.size());
+        MyList<String> name = new MyArrayList<>();
+        name.add("Егор", 0);
+        name.add("Женя", 1);
+        name.add("Влад", 2);
+        name.add("Юля", 3);
+        name.add("Катя", 4);
+        name.add("Андрей", 5);
+        name.add("Владос", 6);
+        name.add("Захар", 7);
+        name.add("Шурик", 8);
+        name.add("Олег", 9);
+        name.add("Кирилл", 10);
+        name.add("Рамиль", 11);
+        name.add("Радион", 15);
+        name.addAll(Arrays.asList("Светлана", "Таня"));
+        name.remove("Радион");
+        name.remove(0);
+        System.out.println(name.isEmpty());
+        System.out.println(name.contains("Захар"));
+        System.out.println(name.indexOf("Рамиль"));
+        name.set(15, "hello");
+        name.vivod();
+        System.out.println(name.get(0));
+        System.out.println(name.size());
+        MyList<String> name1 = new MyArrayList<>(Arrays.asList("Никита", "Вася", "Игорь"));
+        name1.vivod();
 
 
     }

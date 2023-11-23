@@ -4,8 +4,8 @@ import java.util.Collection;
 
 public class MyArrayList<T> implements MyList<T> {
 
-    private T[] values;
     private int size = 10;
+    private T[] values;
 
     MyArrayList() {
         values = (T[]) new Object[size];
@@ -16,6 +16,12 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     MyArrayList(Collection<? extends T> collection) {
+        int i = 0;
+        values = (T[]) new Object[collection.size()];
+        for (T item : collection) {
+            values[i] = item;
+            i++;
+        }
     }
 
     private void increasingTheArray() {
