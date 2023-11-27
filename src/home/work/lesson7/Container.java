@@ -2,8 +2,8 @@ package home.work.lesson7;
 
 public class Container extends Deck {
 
-    private final String[] typesOfContainer = new String[]{"Квадратные", "Цилиндрические", "Конусные"};
-    private String typeContainer;
+    private final TypesContainer[] typesOfContainer = TypesContainer.values();
+    private TypesContainer typeContainer;
     private int containerHeight;
     private static final int[] TYPE_DENSITY = new int[]{1000, 2000};
     private int density;
@@ -19,18 +19,18 @@ public class Container extends Deck {
         setWaterInContainers(massOfWater);
     }
 
-    private double calculatingTheMassOfWater(String typeContainer) {
+    private double calculatingTheMassOfWater(TypesContainer typeContainer) {
         double massOfWater = 0;
         switch (typeContainer) {
-            case "Квадратные": {
+            case SQUARE: {
                 massOfWater = ((Math.pow(getOverallDiameter(), 3) / (3 * Math.sqrt(3))) * density) / 1000;
                 break;
             }
-            case "Цилиндрические": {
+            case CYLINDRICAL: {
                 massOfWater = ((containerHeight * Math.PI * Math.pow(getOverallDiameter(), 2) / 4) * density) / 1000;
                 break;
             }
-            case "Конусные": {
+            case CONE: {
                 massOfWater = ((((double) 1 / 3 * Math.PI * Math.pow((double) getOverallDiameter() / 2, 2))
                         * containerHeight) * density) / 1000;
                 break;
@@ -43,11 +43,10 @@ public class Container extends Deck {
     @Override
     public String toString() {
         return super.toString() +
-                " (Тип контейнеров:" + typeContainer + ")" +
+                " (Тип контейнеров:" + typeContainer.getTitle() + ")" +
                 " (Высота " + containerHeight + ")" +
                 " (Плотность воды :" + density + ")" +
                 " (Масса воды в контейнерах:" + massOfWater + " литров)";
     }
 
 }
-

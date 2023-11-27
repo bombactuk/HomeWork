@@ -16,7 +16,7 @@ public class Port {
         if (ships[berth] == null) {
             ships[berth] = creationOfShips();
             waterOnThePiers[berth] = ships[berth].getWaterInContainers();
-            nameShip[berth] = ships[berth].getName();
+            nameShip[berth] = ships[berth].getNameShip().getTitle();
         } else {
             System.out.println(Constants.POSITION_AT_THE_MERCH);
         }
@@ -50,7 +50,6 @@ public class Port {
     }
 
     public Port() {
-
     }
 
 }

@@ -1,13 +1,11 @@
 package home.work.lesson7;
 
-
 public class Deck extends Ship {
 
-    private String deck;
-    private final String[] deckView = new String[]{"Однопалубный", "Двухпалубный"};
-    private final String[] typesOfContainerSingleDeck = new String[]{"2 Больших контейнера", "4 Маленьких контейнера"};
-    private final String[] typesOfContainerDoubleDecker = new String[]{"4 Больших контейнера", "8 Маленьких контейнера",
-            "2 Больших и 4 Маленьких контейнера"};
+    private DeckType deck;
+    private final DeckType[] deckView = DeckType.values();
+    private final ContainerTypeSingleDeck[] typesOfContainerSingleDeck = ContainerTypeSingleDeck.values();
+    private final ContainerTypeDoubleDeck[] typesOfContainerDoubleDecker = ContainerTypeDoubleDeck.values();
     private int overallDiameter;
     private String container;
 
@@ -18,16 +16,16 @@ public class Deck extends Ship {
         container = determiningContainerSize(deck);
     }
 
-    private String determiningContainerSize(String deck) {
+    private String determiningContainerSize(DeckType deck) {
         String container = "";
         switch (deck) {
-            case "Однопалубный": {
-                container = typesOfContainerSingleDeck[random.nextInt(typesOfContainerSingleDeck.length)];
+            case ONE_DECK: {
+                container = typesOfContainerSingleDeck[random.nextInt(typesOfContainerSingleDeck.length)].getTitle();
                 overallDiameter = 40;
                 break;
             }
-            case "Двухпалубный": {
-                container = typesOfContainerDoubleDecker[random.nextInt(typesOfContainerDoubleDecker.length)];
+            case TWO_DECK: {
+                container = typesOfContainerDoubleDecker[random.nextInt(typesOfContainerDoubleDecker.length)].getTitle();
                 overallDiameter = 80;
                 break;
             }
@@ -42,7 +40,7 @@ public class Deck extends Ship {
 
     @Override
     public String toString() {
-        return super.toString() + "(" + deck + ") (" + container + ")";
+        return super.toString() + "(" + deck.getTitle() + ") (" + container + ")";
     }
-}
 
+}

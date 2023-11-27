@@ -1,15 +1,12 @@
 package home.work.lesson7;
 
-
 public final class Constants {
 
-    public static final String OUTPUT_MENU = """
-            Добавить корабль в порт введите - 1
-            Удалить корабль из порта по номеру причала - 2
-            Удалить корабль из порта по названию корабля - 3
-            Вывести порт с кораблями введите - 4
-            Выйти из программы введите - 5
-            """;
+    public static final String OUTPUT_MENU = "Добавить корабль в порт введите - 1\n" +
+            "Удалить корабль из порта по номеру причала - 2\n" +
+            "Удалить корабль из порта по названию корабля - 3\n" +
+            "Вывести порт с кораблями введите - 4\n" +
+            "Выйти из программы введите - 5\n";
     public static final String ENTERING_THE_SHIP = "Введите в какой причал добавить корабль";
     public static final String BERTH_ENTRY_ERROR = "Вы ввели не правильный номер причала";
     public static final String DELETION_BY_BERTH_NUMBER = "Введите из какого причала убрать корабль по номеру причала";

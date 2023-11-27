@@ -45,10 +45,8 @@ public class Main {
                     System.out.println(Constants.BYE);
                     break;
                 }
-                default:
             }
-
         }
     }
-}
 
+}

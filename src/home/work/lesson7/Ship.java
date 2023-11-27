@@ -5,21 +5,17 @@ import java.util.Random;
 public class Ship {
 
     protected final Random random = new Random();
-    private String nameShip;
+    private NameShip nameShip;
+    private final NameShip[] nameShips = NameShip.values();
     private long waterInContainers;
-    private final String[] shipNames = new String[]{"Quiz", "Flying Dutchman", "AquaMarina",
-            "Pint", "Bismarck", "Nautilus", "Golden Hind", "Enterprise", "Lusitania", "Titanic"};
 
     public void creationOfName() {
-        nameShip = shipNames[random.nextInt(shipNames.length)];
-    }
-
-    public Ship() {
+        nameShip = nameShips[random.nextInt(nameShips.length)];
     }
 
     @Override
     public String toString() {
-        return nameShip + " ";
+        return nameShip.getTitle() + " ";
     }
 
     public long getWaterInContainers() {
@@ -30,7 +26,7 @@ public class Ship {
         this.waterInContainers = waterInContainers;
     }
 
-    public String getName() {
+    public NameShip getNameShip() {
         return nameShip;
     }
 
