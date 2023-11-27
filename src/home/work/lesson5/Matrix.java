@@ -1,83 +1,114 @@
 package home.work.lesson5;
 
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 import java.util.Random;
 
 public class Matrix {
-    private Random random = new Random();
+    private final Random random = new Random();
+    private final int size;
 
-    public void matrix() {
-        String[][] cats = new String[10][10];
-        dataInputAndOutput(cats);
-        comparisonDiagonals(cats);
-        String[] diagonalElements = new String[cats.length + cats.length];
-        for (int i = 0; i < cats.length; i++) {
-            diagonalElements[i] = cats[i][i];
-            diagonalElements[i + cats.length] = cats[i][cats.length - 1 - i];
-        }
-        сheckingElementsAndOutputtingNumbersAndSymbols(diagonalElements);
+    public void outputOfAllTasks() {
+        String[][] matrix = new String[size][size];
+        dataInputAndOutput(matrix);
+        comparisonDiagonals(matrix);
+        displayingTextElementsRange(creatingArrayDiagonalElements(matrix));
+        displayNumberElementsRounded(creatingArrayDiagonalElements(matrix));
     }
 
-    public void dataInputAndOutput(String[][] cats) {
-        int element = 0;
-        for (int i = 0; i < cats.length; i++) {
-            for (int j = 0; j < cats.length; j++) {
-                element++;
-                if ((element == 3)) {
-                    cats[i][j] = randomNumber();
-                    element = 0;
+    public String randomNumber() {
+        double randomNubmer = Math.random() + 1;
+        BigDecimal rounding = new BigDecimal(randomNubmer);
+        BigDecimal result = rounding.setScale(5, RoundingMode.HALF_UP);
+        return result.toString();
+    }
+
+    public String randomSymbols() {
+        StringBuilder text = new StringBuilder();
+        for (int i = 0; i < 7; i++) {
+            int randomNumber = random.nextInt(2);
+            if (randomNumber == 1) {
+                randomNumber = random.nextInt(122 - 97 + 1) + 97;
+            } else {
+                randomNumber = random.nextInt(90 - 65 + 1) + 65;
+            }
+            char symbol = (char) randomNumber;
+            text.append(symbol);
+        }
+        return text.toString();
+    }
+
+    public void dataInputAndOutput(String[][] matrix) {
+        int counter = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                counter++;
+                if ((counter == 3)) {
+                    matrix[i][j] = randomNumber();
+                    counter = 0;
                 } else {
-                    cats[i][j] = randomSymbols();
+                    matrix[i][j] = randomSymbols();
                 }
-                System.out.print(" " + cats[i][j] + " ");
+                System.out.print(" " + matrix[i][j] + " ");
             }
             System.out.println();
         }
     }
 
-    public void сheckingElementsAndOutputtingNumbersAndSymbols(String[] diagonalElements) {
-        StringBuilder builder = new StringBuilder();
-        double[] numbers = new double[3];
-        int x = 0;
-        for (int i = 0; i < diagonalElements.length; i++) {
-            if (checkForNumber(diagonalElements[i])) {
-                numbers[x] = Double.parseDouble(diagonalElements[i]);
-                if (numbers[x] > 1.7) {
-                    numbers[x] = Math.ceil(numbers[x] * 10) / 10;
-                } else {
-                    numbers[x] = Math.floor(numbers[x] * 10) / 10;
-                }
-                x++;
-            } else {
-                builder.append(diagonalElements[i].substring(2, 4)).append(",");
+    public String[] creatingArrayDiagonalElements(String[][] matrix) {
+        String[] diagonalElements = new String[matrix.length + matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            diagonalElements[i] = matrix[i][i];
+            diagonalElements[i + matrix.length] = matrix[i][matrix.length - 1 - i];
+        }
+        return diagonalElements;
+    }
+
+    public void displayNumberElementsRounded(String[] diagonalElements) {
+        int counter = 0;
+        StringBuilder text = new StringBuilder();
+        for (String n : diagonalElements) {
+            if (n.matches("^[0-9]*[.][0-9]+$")) {
+                counter++;
             }
-
-        }
-        builder.deleteCharAt(builder.length() - 1);
-        System.out.println(Constants.OUTPUT_OF_ELEMENTS + builder.toString());
-        System.out.println(Constants.ROUNDED_NUMBERS);
-        for (double c : numbers) {
-            System.out.print(c + "_");
         }
 
+        int counter1 = 0;
+        double[] numbers = new double[counter];
+        for (String diagonalElement : diagonalElements) {
+            if (diagonalElement.matches("^[0-9]*[.][0-9]+$")) {
+                numbers[counter1] = Double.parseDouble(diagonalElement);
+                if (numbers[counter1] > 1.7) {
+                    numbers[counter1] = Math.ceil(numbers[counter1] * 10) / 10;
+                    text.append(numbers[counter1]).append("_");
+                } else {
+                    numbers[counter1] = Math.floor(numbers[counter1] * 10) / 10;
+                    text.append(numbers[counter1]).append("_");
+                }
+                counter1++;
+            }
+        }
+        text.deleteCharAt(text.length() - 1);
+        System.out.println(Constants.ROUNDED_NUMBERS + text);
     }
 
-    public static boolean checkForNumber(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
+    public void displayingTextElementsRange(String[] array) {
+        StringBuilder text = new StringBuilder();
+        for (String n : array) {
+            if (n.matches("^[a-zA-Z]*$")) {
+                text.append(n, 2, 4).append(",");
+            }
         }
+        text.deleteCharAt(text.length() - 1);
+        System.out.println(Constants.OUTPUT_OF_ELEMENTS + text);
     }
 
-
-    public void comparisonDiagonals(String[][] cats) {
+    public void comparisonDiagonals(String[][] matrix) {
         boolean result = true;
-        for (int i = 0; i < cats.length; i++) {
-            if (!Objects.equals(cats[i][i], cats[i][cats.length - 1 - i])) {
+        for (int i = 0; i < matrix.length; i++) {
+            if (!Objects.equals(matrix[i][i], matrix[i][matrix.length - 1 - i])) {
                 result = false;
                 break;
             }
@@ -89,28 +120,9 @@ public class Matrix {
         }
     }
 
-    public String randomNumber() {
-        double randomNubmer = Math.random() + 1;
-        DecimalFormat rounding = new DecimalFormat("#.00000");
-        String number = rounding.format(randomNubmer);
-        return number.replace(',', '.');
+    public Matrix(int size) {
+        this.size = size;
     }
-
-    public String randomSymbols() {
-        StringBuilder text = new StringBuilder();
-        for (int i = 0; i < 7; i++) {
-            int randomNum = random.nextInt(2);
-            if (randomNum == 1) {
-                randomNum = random.nextInt(122 - 97 + 1) + 97;
-            } else {
-                randomNum = random.nextInt(90 - 65 + 1) + 65;
-            }
-            char symbol = (char) randomNum;
-            text.append(symbol);
-        }
-        return text.toString();
-    }
-
 
 }
 

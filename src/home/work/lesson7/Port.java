@@ -1,6 +1,7 @@
 package home.work.lesson7;
 
 public class Port {
+
     private final Ship[] ships = new Ship[10];
     private final long[] waterOnThePiers = new long[10];
     private final String[] nameShip = new String[10];
@@ -19,7 +20,6 @@ public class Port {
         } else {
             System.out.println(Constants.POSITION_AT_THE_MERCH);
         }
-
     }
 
     public void deleteShip(int berth) {

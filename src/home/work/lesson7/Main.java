@@ -3,6 +3,7 @@ package home.work.lesson7;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Port port = new Port();
@@ -44,8 +45,8 @@ public class Main {
                     System.out.println(Constants.BYE);
                     break;
                 }
+                default:
             }
-
 
         }
     }

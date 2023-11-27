@@ -25,7 +25,7 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     private void increasingTheArray() {
-        T[] temporary = (T[]) new Object[values.length * 2];
+        T[] temporary = (T[]) new Object[(values.length << 1)];
         System.arraycopy(values, 0, temporary, 0, values.length);
         values = temporary;
 

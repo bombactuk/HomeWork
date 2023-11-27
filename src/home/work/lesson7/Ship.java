@@ -3,6 +3,7 @@ package home.work.lesson7;
 import java.util.Random;
 
 public class Ship {
+
     protected final Random random = new Random();
     private String nameShip;
     private long waterInContainers;
@@ -12,7 +13,6 @@ public class Ship {
     public void creationOfName() {
         nameShip = shipNames[random.nextInt(shipNames.length)];
     }
-
 
     public Ship() {
     }
@@ -34,7 +34,4 @@ public class Ship {
         return nameShip;
     }
 
-    public void setName(String name) {
-        this.nameShip = name;
-    }
 }

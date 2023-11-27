@@ -2,6 +2,7 @@ package home.work.lesson7;
 
 
 public class Deck extends Ship {
+
     private String deck;
     private final String[] deckView = new String[]{"Однопалубный", "Двухпалубный"};
     private final String[] typesOfContainerSingleDeck = new String[]{"2 Больших контейнера", "4 Маленьких контейнера"};
@@ -9,7 +10,6 @@ public class Deck extends Ship {
             "2 Больших и 4 Маленьких контейнера"};
     private int overallDiameter;
     private String container;
-
 
     @Override
     public void creationOfName() {
@@ -31,11 +31,9 @@ public class Deck extends Ship {
                 overallDiameter = 80;
                 break;
             }
+            default:
         }
         return container;
-    }
-
-    public Deck() {
     }
 
     public int getOverallDiameter() {

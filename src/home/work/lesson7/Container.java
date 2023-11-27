@@ -1,13 +1,13 @@
 package home.work.lesson7;
 
 public class Container extends Deck {
+
     private final String[] typesOfContainer = new String[]{"Квадратные", "Цилиндрические", "Конусные"};
     private String typeContainer;
     private int containerHeight;
     private static final int[] TYPE_DENSITY = new int[]{1000, 2000};
     private int density;
     private long massOfWater;
-
 
     @Override
     public void creationOfName() {
@@ -18,7 +18,6 @@ public class Container extends Deck {
         massOfWater = Math.round(calculatingTheMassOfWater(typeContainer));
         setWaterInContainers(massOfWater);
     }
-
 
     private double calculatingTheMassOfWater(String typeContainer) {
         double massOfWater = 0;
@@ -36,6 +35,7 @@ public class Container extends Deck {
                         * containerHeight) * density) / 1000;
                 break;
             }
+            default:
         }
         return massOfWater;
     }
@@ -47,11 +47,6 @@ public class Container extends Deck {
                 " (Высота " + containerHeight + ")" +
                 " (Плотность воды :" + density + ")" +
                 " (Масса воды в контейнерах:" + massOfWater + " литров)";
-    }
-
-
-    public Container() {
-
     }
 
 }
