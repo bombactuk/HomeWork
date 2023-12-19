@@ -57,6 +57,7 @@ public class Matrix {
         }
     }
 
+
     public String[] creatingArrayDiagonalElements(String[][] matrix) {
         String[] diagonalElements = new String[matrix.length + matrix.length];
         for (int i = 0; i < matrix.length; i++) {
@@ -65,6 +66,7 @@ public class Matrix {
         }
         return diagonalElements;
     }
+
 
     public void displayNumberElementsRounded(String[] diagonalElements) {
         int counter = 0;
@@ -94,9 +96,9 @@ public class Matrix {
         System.out.println(Constants.ROUNDED_NUMBERS + text);
     }
 
-    public void displayingTextElementsRange(String[] array) {
+    public void displayingTextElementsRange(String[] diagonalElements) {
         StringBuilder text = new StringBuilder();
-        for (String n : array) {
+        for (String n : diagonalElements) {
             if (n.matches("^[a-zA-Z]*$")) {
                 text.append(n, 2, 4).append(",");
             }
@@ -104,6 +106,7 @@ public class Matrix {
         text.deleteCharAt(text.length() - 1);
         System.out.println(Constants.OUTPUT_OF_ELEMENTS + text);
     }
+
 
     public void comparisonDiagonals(String[][] matrix) {
         boolean result = true;
@@ -125,4 +128,3 @@ public class Matrix {
     }
 
 }
-
